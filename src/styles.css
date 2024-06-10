@@ -1,0 +1,36 @@
+:root {
+  --color-fg0: #f2f2f2;
+  --color-fg1: #999999;
+
+  --color-bg0: #000000;
+  --color-bg1: #111111;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  color: var(--color-fg0);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18px;
+}
+
+a:link,
+a:visited,
+a:hover,
+a:active {
+  color: var(--color-fg0);
+  text-decoration: none;
+}
+
+ul,
+ol,
+li {
+  list-style-type: none;
+}
+
+canvas {
+  image-rendering: crisp-edges;
+}
