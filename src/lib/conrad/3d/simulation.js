@@ -1,7 +1,7 @@
 import * as THREE from 'three'
 
 import Camera from './camera.js'
-import Conrad from './conrad.js'
+import Conrad from '../conrad.js'
 import Renderer from './renderer.js'
 import ResourceLoader from './resourceLoader.js'
 import Sizes from './sizes.js'
@@ -10,7 +10,7 @@ import Parameters from './parameters.js'
 let instance = null
 
 export default class Simulation {
-  constructor() {
+  constructor(canvasObj) {
     if (instance) {
       return instance
     }
@@ -19,7 +19,7 @@ export default class Simulation {
 
     // Setup
     this.conrad = new Conrad()
-    this.canvas = document.getElementById('myCanvas') //TODO accept user input
+    this.canvas = document.getElementById(canvasObj.id)
     this.parameters = new Parameters()
     this.sizes = new Sizes()
     this.time = this.conrad.time
@@ -29,7 +29,7 @@ export default class Simulation {
     this.renderer = new Renderer()
 
     this.keepUpdated = [] //TODO temp workaround
-    this.paramsFolder = this.parameters.ui.addFolder('temp') //TODO fix this
+    this.paramsFolder = this.parameters.ui.addFolder('Params')
 
     this.camera.setOrbitControls()
     this.scene.background = new THREE.Color(0x000000)
@@ -69,7 +69,8 @@ export default class Simulation {
     this.sizes.destroy()
 
     this.scene.traverse((child) => {
-      if (child instanceof THREE.Mesh) { //TODO do we need to handle lines and points too? Should we just do instanceof Object3D?
+      if (child instanceof THREE.Mesh) {
+        //TODO do we need to handle lines and points too? Should we just do instanceof Object3D?
         child.geometry.dispose()
 
         for (const key in child.material) {

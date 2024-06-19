@@ -1,4 +1,4 @@
-import EventEmitter from './eventEmitter.js'
+import EventEmitter from './3d/eventEmitter.js'
 
 export default class Time extends EventEmitter {
   constructor() {
@@ -21,7 +21,7 @@ export default class Time extends EventEmitter {
     this.delta = currentTime - this.current
     this.current = currentTime
     this.elapsed = this.current - this.start
-    this.frame ++
+    this.frame++
 
     this.trigger('tick')
 

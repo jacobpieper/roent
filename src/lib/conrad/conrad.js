@@ -1,4 +1,4 @@
-import Simulation from './simulation.js'
+import Simulation from './3d/simulation.js'
 import Time from './time.js'
 
 let instance = null
@@ -9,17 +9,17 @@ export default class Conrad {
       return instance
     }
     instance = this
-  
+
     // Setup
     this.time = new Time()
     this.simulations = []
   }
 
-  addSimulation(context) {
+  addSimulation(context, canvasObj) {
     let simulation
-    switch(context) {
+    switch (context) {
       case '3d':
-        simulation = new Simulation()
+        simulation = new Simulation(canvasObj)
         break
       case '2d':
         break

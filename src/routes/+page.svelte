@@ -30,7 +30,7 @@
 
 <style>
   :root {
-    --color-black: #090806;
+    --color-black: #090909;
   }
 
   .background {
@@ -43,7 +43,7 @@
   }
 
   #roent-logo {
-    fill: #e7d7a9;
+    fill: #bfffcf;
     width: 300px;
   }
 </style>

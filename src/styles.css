@@ -1,9 +1,15 @@
 :root {
-  --color-fg0: #f2f2f2;
-  --color-fg1: #999999;
+  --color-fg0: hsl(210, 15%, 96%);
+  --color-fg1: hsl(210, 33%, 84%);
+  --color-fg2: hsl(211, 21%, 69%);
 
-  --color-bg0: #000000;
-  --color-bg1: #111111;
+  --color-bg0: hsl(210, 0%, 0%);
+  --color-bg1: hsl(210, 30%, 5%);
+  --color-bg2: hsl(210, 20%, 9%);
+
+  --color-accent0: hsl(156, 80%, 92%);
+  --color-accent1: hsl(156, 63%, 81%);
+  --color-accent2: hsl(156, 52%, 73%);
 }
 
 * {
@@ -12,10 +18,10 @@
 }
 
 body {
-  background: #000000;
+  background: var(--color-bg1);
   color: var(--color-fg0);
   font-family: 'Open Sans', sans-serif;
-  font-size: 18px;
+  font-size: 16px;
 }
 
 a:link,
@@ -34,4 +40,7 @@ li {
 
 canvas {
   image-rendering: crisp-edges;
+  width: 256px;
+  height: 256px;
+  background: var(--color-bg0);
 }

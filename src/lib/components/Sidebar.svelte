@@ -1,74 +1,114 @@
-<aside>
-  <div class="header">
-    <div class="logo-container">
-      <img class="roent-logo" src="/roent-white.svg" alt="Roent" />
-    </div>
-  </div>
+<script>
+  export let lists
 
-  <div class="list-container">
-    <div class="feature-list">
-      <h2>Features</h2>
-      <ul>
-        <li><a href="/">Example</a></li>
-        <li><a href="/">Example</a></li>
-        <li><a href="/">Example</a></li>
-      </ul>
-    </div>
-  </div>
-</aside>
+  /**
+   * Status'/statuses/stati?
+   *   -todo: do not render link
+   *   -active: render link
+   *   -depricated: render link with strike through
+   */
+</script>
+
+<div class="sidebar-container">
+  <aside>
+    <nav>
+      <!--Iterate each list in lists-->
+      {#each lists as list}
+        <div class="list-container">
+          <h1 class="h1-nav">{list.title}</h1>
+          <ul>
+            <!--If list contains links, iterate and render links-->
+            {#if list.items !== undefined}
+              {#each list.items as item}
+                <!--Check item status-->
+                {#if item.status === 'active'}
+                  <li><a href={item.path}><h3 class="h3-nav">{item.name}</h3></a></li>
+                {:else if item.status === 'depricated'}
+                  <li><a href={item.path}><h3 class="h3-nav depricated">{item.name}</h3></a></li>
+                {/if}
+              {/each}
+            {/if}
+
+            <!--If list contains sublists, iterate sublists-->
+            {#if list.sublists !== undefined}
+              {#each list.sublists as sublist}
+                <div class="sublist-container">
+                  <h2 class="h2-nav">{sublist.title}</h2>
+                  <ul>
+                    <!--If sublist contains links, iterate and render links-->
+                    {#if sublist.items !== undefined}
+                      {#each sublist.items as item}
+                        <!--Check item status-->
+                        {#if item.status === 'active'}
+                          <li><a href={item.path}><h3 class="h3-nav">{item.name}</h3></a></li>
+                        {:else if item.status === 'depricated'}
+                          <li>
+                            <a href={item.path}><h3 class="h3-nav depricated">{item.name}</h3></a>
+                          </li>
+                        {/if}
+                      {/each}
+                    {/if}
+                  </ul>
+                </div>
+              {/each}
+            {/if}
+          </ul>
+        </div>
+      {/each}
+    </nav>
+  </aside>
+</div>
 
 <style>
+  .sidebar-container {
+    width: 480px;
+    height: 100%;
+  }
+
   aside {
-    width: 400px;
-    height: calc(100vh - 50px);
-    border: 2px solid #bababa;
-    border-radius: 10px;
-    background-color: #090806;
-  }
-
-  .header {
+    height: 100%;
+    padding-left: 50px;
+    padding-right: 20px;
+    border-right: 1px solid #777777;
     display: flex;
-    justify-content: flex-start;
-    align-items: end;
-    gap: 10px;
-    padding-top: 25px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #bababa;
-    padding-left: 30px;
+    flex-direction: column;
+    justify-content: space-between;
+    background: inherit;
   }
 
-  .roent-logo {
-    width: 100px;
+  .h1-nav {
+    color: var(--color-accent1);
+    font-size: 1.2em;
+    font-weight: 700;
+    font-variant: small-caps;
+    margin-left: -25px;
+    padding-bottom: 1em;
   }
 
-  h1 {
-    font-size: 22px;
-    color: #bababa;
+  .h2-nav {
+    color: var(--color-fg1);
+    font-size: 1.3em;
+    font-weight: 700;
+    padding-bottom: 0.25em;
+  }
+
+  .h3-nav {
+    color: var(--color-fg2);
+    font-weight: 100;
+    font-size: 1.2em;
+    padding-bottom: 0.25em;
   }
 
   .list-container {
-    padding-left: 30px;
+    padding-top: 1em;
+    padding-bottom: 1em;
   }
 
-  h2 {
-    font-size: 24px;
-    color: #f2f2f2;
-    padding-top: 15px;
-    padding-bottom: 5px;
+  .sublist-container {
+    padding-bottom: 1em;
   }
 
-  li {
-    font-size: 20px;
-    color: white;
-    padding-left: 20px;
-    padding-bottom: 5px;
-  }
-
-  ul {
-    padding-bottom: 20px;
-  }
-
-  a:hover {
-    text-shadow: 0px 0px 5px #f2f2f2;
+  .depricated {
+    text-decoration: line-through;
   }
 </style>
