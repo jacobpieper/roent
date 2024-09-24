@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import Mottle from './Mottle'
+  import testpattern from '../lib/images/testpattern.bmp'
 
   let canvas, ctx, originalImage, currentImage
   let cursorX = 0
@@ -22,10 +23,12 @@
   onMount(() => {
     setCanvas()
 
-    loadImage('/src/lib/images/testpattern.bmp').then((loadedImage) => {
-      originalImage = loadedImage
-      currentImage = loadedImage
-    })
+    originalImage = newLoadImage()
+    document.getElementById('testpattern')
+    //loadImage('/src/lib/images/testpattern.bmp').then((loadedImage) => {
+    //	originalImage = loadedImage
+    //	currentImage = loadedImage
+    //})
 
     // Create event listeners
     canvas.addEventListener('mousemove', handleMouseMove)
@@ -45,6 +48,17 @@
     //mouse event listeners
     // user input
   })
+
+  function newLoadImage() {
+    const image = document.getElementById('testpattern')
+    const osCanvas = new OffscreenCanvas(512, 512)
+    osCanvas.width = 512
+    osCanvas.height = 512
+    const osCtx = osCanvas.getContext('2d')
+    osCtx.drawImage(image, 0, 0)
+    const imageData = osCtx.getImageData(0, 0, 512, 512)
+    return imageData
+  }
 
   function setCanvas() {
     canvas = document.getElementById('canvasMain')
@@ -232,6 +246,10 @@
   }
 </script>
 
+<div class="hidden">
+  <img src={testpattern} alt="testpattern" id="testpattern" />
+</div>
+
 <canvas id="canvasMain"></canvas>
 <div class="controls">
   <div>
@@ -262,5 +280,9 @@
 
   #frameRate {
     color: white;
+  }
+
+  .hidden {
+    display: none;
   }
 </style>
