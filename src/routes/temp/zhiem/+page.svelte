@@ -1,7 +1,6 @@
 <script>
   import { onMount } from 'svelte'
   import Mottle from './Mottle'
-  //import testpattern from '$lib/images/testpattern.bmp'
 
   let canvas, ctx, originalImage, currentImage
   let cursorX = 0
@@ -9,7 +8,6 @@
   let isCursorOverCanvas = false
   let isSpacebarPressed = false
 
-  let fluoro = null
   let frameRate = 4
   let frameQueue = []
   let sd = 50
@@ -23,8 +21,6 @@
   onMount(() => {
     setCanvas()
 
-    //originalImage = newLoadImage()
-    //document.getElementById('testpattern')
     loadImage('/testpattern.bmp').then((loadedImage) => {
       originalImage = loadedImage
       currentImage = loadedImage
@@ -41,12 +37,6 @@
     document.getElementById('dose').addEventListener('input', handleDoseChange)
     document.getElementById('alpha').addEventListener('input', handleAlphaChange)
     document.getElementById('latency').addEventListener('input', handleLatencyChange)
-
-    // create mottle
-    //create timeManager
-    //spacebar event listeners
-    //mouse event listeners
-    // user input
   })
 
   function newLoadImage() {
@@ -176,17 +166,6 @@
     }
 
     runFluoro()
-
-    //const initialImage = createNewImageWithMottle()
-    //ctx.putImageData(initialImage, 0, 0)
-    //
-    //const interval = 1000 / frameRate
-    //fluoro = setInterval(async () => {
-    //	await new Promise((resolve) => setTimeout(resolve, latency))
-    //	const imageWithMottle = createNewImageWithMottle()
-    //	const recursiveImage = applyEMAFilter(imageWithMottle)
-    //	ctx.putImageData(recursiveImage, 0, 0)
-    //}, interval)
   }
 
   function renderDelayedFrames() {
@@ -205,10 +184,6 @@
   function stopFluoro() {
     isSpacebarPressed = false
     frameQueue = []
-
-    //if (fluoro) {
-    //	clearInterval(fluoro)
-    //}
   }
 
   function createNewImageWithMottle() {
@@ -244,10 +219,6 @@
     const imageData = new ImageData(new Uint8ClampedArray(filteredImage), 512, 512)
     return imageData
   }
-  //<div class="hidden">
-  //
-  //  <img src={testpattern} alt="testpattern" id="testpattern" />
-  //</div>
 </script>
 
 <canvas id="canvasMain"></canvas>
@@ -276,13 +247,5 @@
     height: 512px;
     border: 1px solid grey;
     cursor: none;
-  }
-
-  #frameRate {
-    color: white;
-  }
-
-  .hidden {
-    display: none;
   }
 </style>
