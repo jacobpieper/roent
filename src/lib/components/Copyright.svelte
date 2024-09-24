@@ -15,12 +15,14 @@
     right: 20px;
     display: flex;
     gap: 10px;
-    padding-bottom: 5px;
+    padding: 5px 10px;
     font-size: 12px;
-    color: #777777;
+    color: #999999;
+    background: #000000bb;
+    border-radius: 8px;
   }
 
   #cc-licence a {
-    color: #777777;
+    color: #999999;
   }
 </style>

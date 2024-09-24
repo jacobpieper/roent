@@ -78,11 +78,10 @@
 
   .h1-nav {
     color: var(--color-accent1);
-    font-size: 1.2em;
+    font-size: 1.4em;
     font-weight: 700;
     font-variant: small-caps;
-    margin-left: -25px;
-    padding-bottom: 1em;
+    padding-bottom: 0.5em;
   }
 
   .h2-nav {

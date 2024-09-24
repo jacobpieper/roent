@@ -33,7 +33,7 @@
             {
               name: 'Layer Blending',
               path: '/previews/component/layer-blending',
-              status: 'todo',
+              status: 'active',
             },
             {
               name: 'Layer Interpolation',

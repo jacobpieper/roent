@@ -1,7 +1,4 @@
 <script>
-  /**
-   * What the fuck is causing so much lag all of a sudden.
-   */
   import * as THREE from 'three'
   import { onMount } from 'svelte'
   import Simulation from '../../../../lib/components/Simulation.svelte'
@@ -17,7 +14,7 @@
   ]
 
   onMount(() => {
-    const conrad = new Conrad()
+    const conrad = new Conrad(canvases)
     const simulation = conrad.addSimulation('3d', canvases[0])
 
     const grid = new THREE.GridHelper(150, 15)

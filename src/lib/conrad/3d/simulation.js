@@ -3,33 +3,21 @@ import * as THREE from 'three'
 import Camera from './camera.js'
 import Conrad from '../conrad.js'
 import Renderer from './renderer.js'
-import ResourceLoader from './resourceLoader.js'
-import Sizes from './sizes.js'
-import Parameters from './parameters.js'
-
-let instance = null
 
 export default class Simulation {
-  constructor(canvasObj) {
-    if (instance) {
-      return instance
-    }
-
-    instance = this
-
+  constructor(canvasObject) {
+    this.width = canvasObject.width
+    this.height = canvasObject.height
     // Setup
     this.conrad = new Conrad()
-    this.canvas = document.getElementById(canvasObj.id)
-    this.parameters = new Parameters()
-    this.sizes = new Sizes()
+    this.canvas = document.getElementById(canvasObject.id)
+    this.sizes = this.conrad.sizes
     this.time = this.conrad.time
     this.scene = new THREE.Scene()
-    this.resources = new ResourceLoader('./sources.js') //TODO accept user input
-    this.camera = new Camera()
-    this.renderer = new Renderer()
+    this.camera = new Camera(this)
+    this.renderer = new Renderer(this)
 
     this.keepUpdated = [] //TODO temp workaround
-    this.paramsFolder = this.parameters.ui.addFolder('Params')
 
     this.camera.setOrbitControls()
     this.scene.background = new THREE.Color(0x000000)

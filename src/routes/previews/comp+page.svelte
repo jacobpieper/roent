@@ -4,7 +4,7 @@
   import { onMount } from 'svelte'
 
   onMount(() => {
-    const fileDirectory = './previews/blendModes/'
+    const fileDirectory = '/previews/blendModes/'
     const imageNames = [{ name: 'noise' }, { name: 'cross' }]
 
     const images = []

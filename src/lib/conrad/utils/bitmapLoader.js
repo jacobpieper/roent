@@ -1,6 +1,8 @@
 //TODO Pls clean up the method names in this file
 //TODO make most of the names private. And then what the fuck is with the method called returnImage? This should be called getImageData....
 
+import ImageObject from './imageObject'
+
 export default class BitmapLoader {
   constructor(imageDirectory, imageFiles) {
     this.imageDirectory = imageDirectory
@@ -80,5 +82,11 @@ export default class BitmapLoader {
   returnImage(imageName) {
     const path = this.imageDirectory + imageName + '.bmp'
     return this.loadedImages[path]
+  }
+
+  getImageObject(imageName) {
+    const path = this.imageDirectory + imageName + '.bmp'
+
+    return new ImageObject(this.loadedImages[path])
   }
 }

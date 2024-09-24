@@ -25,8 +25,7 @@ export default class EventEmitter {
       const name = this.resolveName(_name)
 
       // Create namespace if not exist
-      if (!(this.callbacks[name.namespace] instanceof Object))
-        this.callbacks[name.namespace] = {}
+      if (!(this.callbacks[name.namespace] instanceof Object)) this.callbacks[name.namespace] = {}
 
       // Create callback if not exist
       if (!(this.callbacks[name.namespace][name.value] instanceof Array))

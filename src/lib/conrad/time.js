@@ -1,4 +1,4 @@
-import EventEmitter from './3d/eventEmitter.js'
+import EventEmitter from './eventEmitter'
 
 export default class Time extends EventEmitter {
   constructor() {

@@ -1,31 +1,37 @@
-import Simulation from './3d/simulation.js'
-import Time from './time.js'
+import Simulation from './3d/simulation'
+import InterfaceImageSim from './imageSim/interfaceImageSim'
+import Time from './time'
+import Sizes from './sizes'
+import Parameters from './parameters'
+import Resources from './resources'
 
 let instance = null
 
 export default class Conrad {
-  constructor() {
+  constructor(canvases, sources) {
     if (instance) {
       return instance
     }
     instance = this
 
     // Setup
-    this.time = new Time()
+    this.canvases = canvases
     this.simulations = []
+    this.time = new Time()
+    this.sizes = new Sizes()
+    this.parameters = new Parameters()
+    this.resources = new Resources(sources)
   }
 
-  addSimulation(context, canvasObj) {
-    let simulation
-    switch (context) {
-      case '3d':
-        simulation = new Simulation(canvasObj)
-        break
-      case '2d':
-        break
-      default:
-        throw new Error(`Unknown simulation context: ${context}.`)
-    }
+  addImageSim(canvasObject) {
+    const simulation = new InterfaceImageSim(canvasObject)
+    this.simulations.push(simulation)
+
+    return simulation
+  }
+
+  add3DSim(canvasObject) {
+    const simulation = new Simulation(canvasObject)
     this.simulations.push(simulation)
 
     return simulation
