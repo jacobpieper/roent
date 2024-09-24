@@ -1,7 +1,7 @@
 <script>
   import { onMount } from 'svelte'
   import Mottle from './Mottle'
-  import testpattern from '../lib/images/testpattern.bmp'
+  //import testpattern from '$lib/images/testpattern.bmp'
 
   let canvas, ctx, originalImage, currentImage
   let cursorX = 0
@@ -23,12 +23,12 @@
   onMount(() => {
     setCanvas()
 
-    originalImage = newLoadImage()
-    document.getElementById('testpattern')
-    //loadImage('/src/lib/images/testpattern.bmp').then((loadedImage) => {
-    //	originalImage = loadedImage
-    //	currentImage = loadedImage
-    //})
+    //originalImage = newLoadImage()
+    //document.getElementById('testpattern')
+    loadImage('/testpattern.bmp').then((loadedImage) => {
+      originalImage = loadedImage
+      currentImage = loadedImage
+    })
 
     // Create event listeners
     canvas.addEventListener('mousemove', handleMouseMove)
@@ -244,11 +244,11 @@
     const imageData = new ImageData(new Uint8ClampedArray(filteredImage), 512, 512)
     return imageData
   }
+  //<div class="hidden">
+  //
+  //  <img src={testpattern} alt="testpattern" id="testpattern" />
+  //</div>
 </script>
-
-<div class="hidden">
-  <img src={testpattern} alt="testpattern" id="testpattern" />
-</div>
 
 <canvas id="canvasMain"></canvas>
 <div class="controls">
